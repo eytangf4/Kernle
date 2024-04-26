@@ -1,6 +1,6 @@
 import wikipedia
 from openai import OpenAI
-from flask import Flask
+from flask import Flask, redirect, url_for, render_template
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -46,11 +46,18 @@ def userSearchToAIResponse(userSearch):
     response = promptToAIResponse(prompt)
     return response.choices[0].message.content
 
+# creates an instance of a flask web application
 app = Flask(__name__)
-@app.route("/")
-def index():
-    return userSearchToAIResponse("gibbs free energy")
 
+# decorates the 'home' function to let the app know when the url has [domain name]/, the app calls 'home'
+@app.route("/<name>")
+# defines the pages that will be on the website
+def home(name):
+    return render_template("index.html", content = name)
+    # commented out so it doesnt use money by calling chatgpt api each time
+    # return userSearchToAIResponse("meringue")
+
+#runs the app
 if __name__ == "__main__":
     app.run(debug=True)
 
