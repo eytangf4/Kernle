@@ -5,6 +5,13 @@
     </head>
     <body>
         <h1>Home Page!</h1>
-        <p>Hello {{content}}!</p>
+        <form action="/main.py" method="get">
+            <div>
+                <label for="fconcept">search for your concept here:</label>
+                <br>
+                <br>
+                <input type="search" id="fconcept" name="fconcept" placeholder="concept" required>
+            </div>
+        </form>
     </body>
 </html>
