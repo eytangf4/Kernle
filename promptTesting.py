@@ -1,10 +1,6 @@
 import wikipedia
 from openai import OpenAI
-from flask import Flask, render_template, request, redirect, url_for
 import os
-from dotenv import load_dotenv
-load_dotenv()
-
 
 def userSearchToTopPage (userSearch):
     topArticle = wikipedia.search(userSearch, 1)
@@ -46,25 +42,4 @@ def userSearchToAIResponse(userSearch):
     response = promptToAIResponse(prompt)
     return response.choices[0].message.content
 
-# creates an instance of a flask web application
-app = Flask(__name__)
-
-# decorates the 'home' function to let the app know when the url has [domain name]/, the app calls 'home'
-# methods tells flask which methods this function is allowed to use, every method in the html file a func is 
-# trying to render must be allowed here
-
-@app.route("/", methods = ["get","post"])
-# each 'def' defines a page that will be on the website
-def home():
-    return render_template("index.html")
-
-
-@app.route("/summary", methods = ["get","post"])
-def summary():
-    userInput = request.form.get("fconcept")
-    AIoutput = userSearchToAIResponse(userInput)
-    return render_template("summary.html", content=AIoutput)
-
-#runs the app
-if __name__ == "__main__":
-    app.run(debug=True)
+print(userSearchToAIResponse("strawberries"))

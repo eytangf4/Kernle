@@ -6,8 +6,8 @@
     <body>
         <h1>Summary Page!</h1>
         <p>{{content}}</p>
-        <form name="back" action="/main.py", method="get">
-            <button>Back</button>
-        </form>
+        <div id="back">
+            <a href="{{ url_for('home') }}">Home Page</a>
+        </div>
     </body>
 </html>

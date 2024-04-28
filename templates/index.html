@@ -5,12 +5,13 @@
     </head>
     <body>
         <h1>Home Page!</h1>
-        <form action="/main.py" method="get">
+        <!-- the action url is where the search redirects, the method 'post' sends the data to that page-->
+        <form action="/summary" method="post">
             <div>
                 <label for="fconcept">search for your concept here:</label>
                 <br>
                 <br>
-                <input type="search" id="fconcept" name="fconcept" placeholder="concept" required>
+                <input type="search" id="fconcept" name="fconcept" placeholder="Search Big Idea" required>
             </div>
         </form>
     </body>
