@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ambiguous Search</title>
+    </head>
+    <body>
+        <h1>Ambiguous Search</h1>
+        <form action="/summary" method="post">
+            <div>
+                <p>Click the name of your intended search:</p>
+                {% for fconcept in options%}
+                    <input type="radio" id={{fconcept}} name="wikipage" value={{fconcept}}>
+                    <label for={{fconcept}}>{{fconcept}}</label><br>
+                {% endfor %}
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </body>
+</html>

@@ -7,9 +7,13 @@ load_dotenv()
 
 
 def userSearchToTopPage (userSearch):
-    topArticle = wikipedia.search(userSearch, 1)
-    return topArticle[0]
-
+    try:
+        topArticle = wikipedia.search(userSearch, 1)
+        return topArticle[0]
+    except wikipedia.exceptions.DisambiguationError as e:
+        # redirect(url_for(ambiguousSearch(e.options)))
+        return render_template("ambiguous.html", options=e.options)
+        # these both don't work
 
 def pageToText (concept):
     wikiPage = wikipedia.WikipediaPage(title=concept)
@@ -64,6 +68,10 @@ def summary():
     userInput = request.form.get("fconcept")
     AIoutput = userSearchToAIResponse(userInput)
     return render_template("summary.html", content=AIoutput)
+
+# @app.route("/ambiguous", methods = ["get","post"])
+# def ambiguousSearch(pageList):
+#     return render_template("ambiguous.html", options=pageList)
 
 #runs the app
 if __name__ == "__main__":
