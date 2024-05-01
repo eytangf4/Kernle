@@ -76,7 +76,12 @@ def summary():
 
 @app.route("/ambiguous", methods = ["get","post"])
 def ambiguousSearch():
-    #currently using global variable pageList to try to deal with disambiguationerror
+    # currently using global variable pageList to try to deal with disambiguationerror
+    # to handle this error, i need to find some way to send the pageList from pageToText,
+    # where it catches the error, to this function, where it passes that list into the html page to be printed
+    # as radio buttons. then the user can select one page using the radio buttons, and that name will be sent to
+    # /summary. /summary will pass the name of the selected page into the userSearchToAIResponse function and recieve the response
+    # continuing as normal and thereby handling the disambiguation error.
     return render_template("ambiguous.html", options=pageList)
 
 @app.route("/about", methods = ["get","post"])
