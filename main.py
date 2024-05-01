@@ -15,7 +15,6 @@ def userSearchToTopPage (userSearch):
 def pageToText (concept):
     try:
         wikiPage = wikipedia.WikipediaPage(title=concept)
-        wikipedia.Wiki
         # using wikipedia.WikipediaPage as opposed to wikipedia.page since WikipediaPage
         # also contains data from a Wikipedia page but also uses property methods to filter data from the raw HTML.
         # this helps chatGPT to understand the page better
