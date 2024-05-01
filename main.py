@@ -5,19 +5,25 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+global pageList
+
 
 def userSearchToTopPage (userSearch):
-    try:
-        topArticle = wikipedia.search(userSearch, 1)
-        return topArticle[0]
-    except wikipedia.exceptions.DisambiguationError as e:
-        # redirect(url_for(ambiguousSearch(e.options)))
-        return render_template("ambiguous.html", options=e.options)
-        # these both don't work
+    topArticle = wikipedia.search(userSearch, 1)
+    return topArticle[0]
 
 def pageToText (concept):
-    wikiPage = wikipedia.WikipediaPage(title=concept)
-    return wikiPage.content
+    try:
+        wikiPage = wikipedia.WikipediaPage(title=concept)
+        wikipedia.Wiki
+        # using wikipedia.WikipediaPage as opposed to wikipedia.page since WikipediaPage
+        # also contains data from a Wikipedia page but also uses property methods to filter data from the raw HTML.
+        # this helps chatGPT to understand the page better
+        # (I know this because I tried using both 'page' and 'WikipediaPage' and 'WikipediaPage' gave me clearer kernel summaries
+        return wikiPage.content
+    except wikipedia.exceptions.DisambiguationError as e:
+        pageList = e.options
+        redirect(url_for("ambiguousSearch"))
 
 def createPrompt (pageContent):
     prompt = ("summarize this wikipedia article delimited by quotes in extremely easy to read "
@@ -69,9 +75,14 @@ def summary():
     AIoutput = userSearchToAIResponse(userInput)
     return render_template("summary.html", content=AIoutput)
 
-# @app.route("/ambiguous", methods = ["get","post"])
-# def ambiguousSearch(pageList):
-#     return render_template("ambiguous.html", options=pageList)
+@app.route("/ambiguous", methods = ["get","post"])
+def ambiguousSearch():
+    #currently using global variable pageList to try to deal with disambiguationerror
+    return render_template("ambiguous.html", options=pageList)
+
+@app.route("/about", methods = ["get","post"])
+def about():
+    return render_template("about.html")
 
 #runs the app
 if __name__ == "__main__":
