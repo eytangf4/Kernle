@@ -5,24 +5,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-global pageList
-
-
 def userSearchToTopPage (userSearch):
     topArticle = wikipedia.search(userSearch, 1)
     return topArticle[0]
 
 def pageToText (concept):
-    try:
-        wikiPage = wikipedia.WikipediaPage(title=concept)
-        # using wikipedia.WikipediaPage as opposed to wikipedia.page since WikipediaPage
-        # also contains data from a Wikipedia page but also uses property methods to filter data from the raw HTML.
-        # this helps chatGPT to understand the page better
-        # (I know this because I tried using both 'page' and 'WikipediaPage' and 'WikipediaPage' gave me clearer kernel summaries
-        return wikiPage.content
-    except wikipedia.exceptions.DisambiguationError as e:
-        pageList = e.options
-        redirect(url_for("ambiguousSearch"))
+    wikiPage = wikipedia.WikipediaPage(title=concept)
+    # using wikipedia.WikipediaPage as opposed to wikipedia.page since WikipediaPage
+    # also contains data from a Wikipedia page but also uses property methods to filter data from the raw HTML.
+    # this helps chatGPT to understand the page better
+    # (I know this because I tried using both 'page' and 'WikipediaPage' and 'WikipediaPage' gave me clearer kernel summaries
+    return wikiPage.content
 
 def createPrompt (pageContent):
     prompt = ("summarize this wikipedia article delimited by quotes in extremely easy to read "
@@ -71,18 +64,22 @@ def home():
 @app.route("/summary", methods = ["get","post"])
 def summary():
     userInput = request.form.get("fconcept")
-    AIoutput = userSearchToAIResponse(userInput)
-    return render_template("summary.html", content=AIoutput)
+    try:
+        AIoutput = userSearchToAIResponse(userInput)
+        return render_template("summary.html", content=AIoutput)
+    except wikipedia.exceptions.DisambiguationError as e:
+        options = e.options
+        return render_template("ambiguous.html", options=options, concept=userInput)
 
 @app.route("/ambiguous", methods = ["get","post"])
-def ambiguousSearch():
-    # currently using global variable pageList to try to deal with disambiguationerror
-    # to handle this error, i need to find some way to send the pageList from pageToText,
-    # where it catches the error, to this function, where it passes that list into the html page to be printed
-    # as radio buttons. then the user can select one page using the radio buttons, and that name will be sent to
-    # /summary. /summary will pass the name of the selected page into the userSearchToAIResponse function and recieve the response
-    # continuing as normal and thereby handling the disambiguation error.
-    return render_template("ambiguous.html", options=pageList)
+def resolve_ambiguity():
+    # need "if-else" so that error is not thrown if user types in "/ambiguous" at the end of the url.
+    # the redirect to summary only runs if an ambiguous redirect came from a disambiguation error,
+    # otherwise it just redirects to home
+    if request.method == "get":
+        return redirect(url_for("summary"))
+    else:
+        return redirect(url_for("home"))
 
 @app.route("/about", methods = ["get","post"])
 def about():

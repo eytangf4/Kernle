@@ -42,4 +42,11 @@ def userSearchToAIResponse(userSearch):
     response = promptToAIResponse(prompt)
     return response.choices[0].message.content
 
-print(userSearchToAIResponse("strawberries"))
+def userSearchToPageContent(userSearch):
+    topPage = userSearchToTopPage(userSearch)
+    pageText = pageToText(topPage)
+    prompt = createPrompt(pageText)
+    return prompt
+
+# print(userSearchToAIResponse("strawberries"))
+print(userSearchToPageContent("Immigration and Nationality Act of 1965"))

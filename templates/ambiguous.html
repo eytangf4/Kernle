@@ -7,11 +7,12 @@
         <h1>Ambiguous Search</h1>
         <form action="/summary" method="post">
             <div>
-                <p>Click the name of your intended search:</p>
-                {% for fconcept in options%}
-                    <input type="radio" id={{fconcept}} name="wikipage" value={{fconcept}}>
-                    <label for={{fconcept}}>{{fconcept}}</label><br>
+                <p>Does <strong>"{{concept}}"</strong> refer to:</p>
+                {% for fconcept in options %}
+                    <input type="radio" id="{{fconcept}}" name="fconcept" value="{{fconcept}}">
+                    <label for="{{fconcept}}">{{fconcept}}</label><br>
                 {% endfor %}
+                <br>
                 <input type="submit" value="Submit">
             </div>
         </form>
