@@ -4,16 +4,21 @@
         <title>Kernle</title>
     </head>
     <body>
-        <h1>Kernle</h1>
+        <nav>
+            <div id="about">
+                <a href="{{ url_for('about') }}">About</a>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="text-align: center; font-family: Arial, Helvetica, sans-serif;"><FONT COLOR="#9ACD32">Kernle</FONT></h1>
         <!-- the action url is where the search redirects, the method 'post' sends the data to that page-->
-        <form action="/summary" method="post">
+        <form style="text-align: center;" action="/summary" method="post">
             <div>
                 <input type="search" id="fconcept" name="fconcept" placeholder="Search Kernle" required>
             </div>
         </form>
-        <br>
-        <div id="about">
-            <a href="{{ url_for('about') }}">About</a>
-        </div>
     </body>
 </html>

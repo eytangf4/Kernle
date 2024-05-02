@@ -4,10 +4,12 @@
         <title>Summary page</title>
     </head>
     <body>
+        <nav>
+            <div id="back">
+                <a href="{{ url_for('home') }}">Home Page</a>
+            </div>
+        </nav>
         <h1>Summary Page!</h1>
         <p>{{content}}</p>
-        <div id="back">
-            <a href="{{ url_for('home') }}">Home Page</a>
-        </div>
     </body>
 </html>
