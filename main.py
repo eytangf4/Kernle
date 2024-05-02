@@ -71,16 +71,6 @@ def summary():
         options = e.options
         return render_template("ambiguous.html", options=options, concept=userInput)
 
-@app.route("/ambiguous", methods = ["get","post"])
-def resolve_ambiguity():
-    # need "if-else" so that error is not thrown if user types in "/ambiguous" at the end of the url.
-    # the redirect to summary only runs if an ambiguous redirect came from a disambiguation error,
-    # otherwise it just redirects to home
-    if request.method == "get":
-        return redirect(url_for("summary"))
-    else:
-        return redirect(url_for("home"))
-
 @app.route("/about", methods = ["get","post"])
 def about():
     return render_template("about.html")
