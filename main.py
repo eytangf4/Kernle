@@ -26,8 +26,8 @@ def createPrompt (pageContent):
             "broken into 2-3 paragraphs of 1-2 sentences where each paragraph "
             "covers a different piece of the intuition. place that piece as a "
             "bolded title before each paragraph. Make sure the paragraphs do not "
-            "repeat themselves. do not use words from the article in the summary, "
-            "make the summary readable for a kindergartener. output in raw markdown. make it more simple: \n\n\n"
+            "repeat themselves. do not use complicated words from the article in your summary. "
+            "write your summary in language a kindergartener would understand. make it more simple: \n\n\n"
             + "\"" + pageContent + "\"")
     return prompt
 
