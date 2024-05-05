@@ -3,6 +3,7 @@ from openai import OpenAI
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from dotenv import load_dotenv
+from transformers import AutoTokenizer, AutoModelForCausalLM
 load_dotenv()
 
 def userSearchToTopPage (userSearch):
@@ -25,28 +26,54 @@ def createPrompt (pageContent):
             "broken into 2-3 paragraphs of 1-2 sentences where each paragraph "
             "covers a different piece of the intuition. place that piece as a "
             "bolded title before each paragraph. Make sure the paragraphs do not "
-            "repeat themselves. do not use words from the article in the summary, make the summary readable for a kindergartener. make it more simple: \n\n\n"
+            "repeat themselves. do not use words from the article in the summary, "
+            "make the summary readable for a kindergartener. output in raw markdown. make it more simple: \n\n\n"
             + "\"" + pageContent + "\"")
     return prompt
 
 def promptToAIResponse (prompt):
+    # setup api key
 
+    # openai
+    client = OpenAI(api_key = os.getenv("openai_api_key"))
 
-    client = OpenAI(api_key = os.getenv("my_api_key"))
+    # call the ai api
 
+    # openai
     response = client.chat.completions.create(
         messages=[{"role": "assistant", "content": prompt,}],
         model="gpt-3.5-turbo",
     )
 
-    return response
+    # openai
+    messageContent = response.choices[0].message.content
+
+    # huggingface cohere
+    # model_id = "CohereForAI/c4ai-command-r-plus-4bit"
+    # tokenizer = AutoTokenizer.from_pretrained(model_id)
+    # model = AutoModelForCausalLM.from_pretrained(model_id)
+
+    # messages = [{"role": "user", "content": prompt}]
+    # input_ids = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt")
+    
+    # gen_tokens = model.generate(
+    #     input_ids, 
+    #     max_new_tokens=100, 
+    #     do_sample=True, 
+    #     temperature=0.3,
+    # )
+
+    # messageContent = tokenizer.decode(gen_tokens[0])
+
+
+    return messageContent
 
 def userSearchToAIResponse(userSearch):
     topPage = userSearchToTopPage(userSearch)
     pageText = pageToText(topPage)
     prompt = createPrompt(pageText)
     response = promptToAIResponse(prompt)
-    return response.choices[0].message.content
+    return response
 
 # creates an instance of a flask web application
 app = Flask(__name__)
