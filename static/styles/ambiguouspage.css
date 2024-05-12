@@ -1,7 +1,3 @@
-p {
-    font-size: 20px;
-}
-
 input {
     width: 60px;
     height: 20px;
@@ -9,4 +5,5 @@ input {
 
 .ambiguous-text {
     font-size: 20px;
+    padding-left: 150px;
 }

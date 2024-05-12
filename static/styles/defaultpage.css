@@ -22,6 +22,29 @@
   background-color: #ebebeb;
 }
 
+.bottom-menu ul {
+  position: absolute;
+  bottom: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.bottom-menu li {
+float: left;
+display: block;
+color: #000000;
+text-align: center;
+padding: 10px;
+text-decoration: none;
+}
+
+.bottom-menu li a:hover {
+text-decoration: underline;
+background-color: #ebebeb;
+}
+
 .font-sans-serif {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -34,15 +57,22 @@
 }
 
 .h2 {
+  padding-left: 150px;
   color: #9ACD32;
   font-size: 30px;
   margin-bottom: 10px;
 }
 
 .h3 {
+  padding-left: 150px;
   color: #9ACD32;
   font-size: 25px;
   margin-bottom: 10px;
+}
+
+/* if changing, also change .summary in summarypage.css, .ambiguous-text in ambiguouspage.css, and .h2 and .h3 in this file  */
+.p {
+  padding-left: 150px;
 }
 
 .kernle-color {
