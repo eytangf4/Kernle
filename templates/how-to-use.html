@@ -6,15 +6,16 @@
         <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='howtousepage.css') }}">
     </head>
     <body>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-        </ul>
-        <br>
-        <br>
-        <br>
+        <div class = "menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+            </ul>
+        </div>
         <h1 class="h1", >How To Use</h1>
+        <p class = "description">Kernle is meant to provide the intuition not the specifics.</p>
+        <h2 class = "h2">For Best Results</h2>
         <p>
-            ADD HOW TO USE INSTRUCTIONS HERE
+            Search the name of the concept (eg. "quantum mechanics") as opposed to extra words (eg. "what is quantum mechanics").
         </p>
     </body>
 </html>

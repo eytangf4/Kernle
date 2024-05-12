@@ -1,15 +1,15 @@
-ul {
+.menu ul {
     list-style-type: none;
     margin: 0;
     padding: 10px;
     overflow: hidden;
 }
   
-li {
+.menu li {
   float: left;
 }
 
-li a {
+.menu li a {
   display: block;
   color: #000000;
   text-align: center;
@@ -17,8 +17,9 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+.menu li a:hover {
   text-decoration: underline;
+  background-color: #ebebeb;
 }
 
 .font-sans-serif {
@@ -30,4 +31,20 @@ li a:hover {
   color: #9ACD32;
   font-size: 50px;
   margin-bottom: 10px;
+}
+
+.h2 {
+  color: #9ACD32;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.h3 {
+  color: #9ACD32;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.kernle-color {
+  color: #9ACD32;
 }

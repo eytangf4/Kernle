@@ -3,6 +3,10 @@ p {
 }
 
 input {
-    width: 50px;
+    width: 60px;
     height: 20px;
+}
+
+.ambiguous-text {
+    font-size: 20px;
 }
