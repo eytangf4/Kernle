@@ -58,6 +58,7 @@ background-color: #ebebeb;
 
 .h2 {
   padding-left: 150px;
+  padding-right: 150px;
   color: #9ACD32;
   font-size: 30px;
   margin-bottom: 10px;
@@ -65,6 +66,7 @@ background-color: #ebebeb;
 
 .h3 {
   padding-left: 150px;
+  padding-right: 150px;
   color: #9ACD32;
   font-size: 25px;
   margin-bottom: 10px;
@@ -73,6 +75,7 @@ background-color: #ebebeb;
 /* if changing, also change .summary in summarypage.css, .ambiguous-text in ambiguouspage.css, and .h2 and .h3 in this file  */
 .p {
   padding-left: 150px;
+  padding-right: 150px;
 }
 
 .kernle-color {
