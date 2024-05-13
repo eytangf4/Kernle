@@ -1,9 +1,9 @@
 import wikipedia
 from openai import OpenAI
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import os
 from dotenv import load_dotenv
-from transformers import AutoTokenizer, AutoModelForCausalLM
+# from transformers import AutoTokenizer, AutoModelForCausalLM
 load_dotenv()
 
 def userSearchToTopPage (userSearch):
@@ -40,8 +40,8 @@ def promptToAIResponse (prompt):
 
     # openai
     response = client.chat.completions.create(
-        messages=[{"role": "assistant", "content": prompt,}],
         model="gpt-3.5-turbo",
+        messages=[{"role": "assistant", "content": prompt,}],
     )
 
     # openai
@@ -68,41 +68,18 @@ def promptToAIResponse (prompt):
 
     return messageContent
 
-# def createSimplePrompt(AIResponse):
-#     prompt = ("Make the language of this summarization more simple, clear, and universally understandable by all. "
-#               "Keep the bolded nature of each section's title. Ensure that there are no technical or complicated terms in the summarization and if there are, change them to "
-#               "simpler language: \n\n\n" + AIResponse)
-#     return prompt
-
-# def makeAIResponseSimpler(prompt):
-#     # setup api key
-
-#     # openai
-#     client = OpenAI(api_key = os.getenv("openai_api_key"))
-
-#     # call the ai api
-
-#     # openai
-#     response = client.chat.completions.create(
-#         messages=[{"role": "assistant", "content": prompt,}],
-#         model="gpt-3.5-turbo",
-#     )
-
-#     # openai
-#     messageContent = response.choices[0].message.content
-#     return messageContent
-
 def userSearchToAIResponse(userSearch):
     topPage = userSearchToTopPage(userSearch)
     pageText = pageToText(topPage)
     prompt = createPrompt(pageText)
     response = promptToAIResponse(prompt)
-    # simplerPrompt = createSimplePrompt(response)
-    # simplerResponse = makeAIResponseSimpler(simplerPrompt)
     return response
 
+TEMPLATE_DIR = os.path.abspath('/Users/eytangf/Kernle/templates')
+STATIC_DIR = os.path.abspath('/Users/eytangf/Kernle/static/styles')
+
 # creates an instance of a flask web application
-app = Flask(__name__)
+app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 
 # decorates the 'home' function to let the app know when the url has [domain name]/, the app calls 'home'
 # methods tells flask which methods this function is allowed to use, every method in the html file a func is 
@@ -128,6 +105,14 @@ def summary():
 def about():
     return render_template("about.html")
 
+@app.route("/how-to-use", methods = ["get","post"])
+def howToUse():
+    return render_template("how-to-use.html")
+
+@app.route("/contact", methods = ["get","post"])
+def contact():
+    return render_template("contact.html")
+
 #runs the app
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

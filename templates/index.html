@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html class="font-sans-serif">
     <head>
         <title>Kernle</title>
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='defaultpage.css') }}">
+        <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='mainpage.css') }}">
     </head>
     <body>
-        <nav>
-            <div id="about">
-                <a href="{{ url_for('about') }}">About</a>
-            </div>
-        </nav>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1 style="text-align: center; font-family: Arial, Helvetica, sans-serif;"><FONT COLOR="#9ACD32">Kernle</FONT></h1>
+        <div class = "menu">
+            <ul>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('howToUse') }}">How To Use</a></li>
+                <li style = "float:right"><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </div>
+        <div class = "bottom-menu">
+            <ul>
+                <li>&copy2024 Kernle</li>
+            </ul>
+        </div>
         <!-- the action url is where the search redirects, the method 'post' sends the data to that page-->
         <form style="text-align: center;" action="/summary" method="post">
             <div>
-                <input type="search" id="fconcept" name="fconcept" placeholder="Search Kernle" required>
+                <br><br><br><br><br><br><br>
+                <h1 class="main-page-logo">Kernle</h1>
+                <input type="search" class="center-screen search-box" id="fconcept" name="fconcept" placeholder="Search Kernle" required>
             </div>
         </form>
     </body>
