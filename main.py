@@ -75,11 +75,8 @@ def userSearchToAIResponse(userSearch):
     response = promptToAIResponse(prompt)
     return response
 
-TEMPLATE_DIR = os.path.abspath('/Users/eytangf/Kernle/templates')
-STATIC_DIR = os.path.abspath('/Users/eytangf/Kernle/static/styles')
-
 # creates an instance of a flask web application
-app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
+app = Flask(__name__, template_folder="./templates", static_folder="./static/styles")
 
 # decorates the 'home' function to let the app know when the url has [domain name]/, the app calls 'home'
 # methods tells flask which methods this function is allowed to use, every method in the html file a func is 
