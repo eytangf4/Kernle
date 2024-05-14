@@ -115,4 +115,4 @@ def contact():
 
 #runs the app
 if __name__ == "__main__":
-    app.run(port=os.getenv("PORT", default=5000))
+    app.run(debug=True)
