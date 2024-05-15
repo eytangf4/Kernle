@@ -106,9 +106,9 @@ def about():
 def howToUse():
     return render_template("how-to-use.html")
 
-@app.route("/contact", methods = ["get","post"])
-def contact():
-    return render_template("contact.html")
+@app.route("/feedback", methods = ["get","post"])
+def feedback():
+    return render_template("feedback.html")
 
 #runs the app
 if __name__ == "__main__":

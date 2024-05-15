@@ -4,13 +4,14 @@
         <title>Kernle</title>
         <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='defaultpage.css') }}">
         <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='mainpage.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     </head>
     <body>
         <div class = "menu">
             <ul>
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('howToUse') }}">How To Use</a></li>
-                <li style = "float:right"><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li style = "float:right"><a href="{{ url_for('feedback') }}">Feedback</a></li>
             </ul>
         </div>
         <div class = "bottom-menu">
