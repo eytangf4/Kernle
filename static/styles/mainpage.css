@@ -3,21 +3,31 @@ input {
   height: 50px;
 }
 
+/* Uses flexbox to center the form content both horizontally and vertically within the viewport. */
 .center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  text-align: center;
+  position: relative;
+}
+
+
+/* Uses 'position: absolute' to position the logo relative to the centered search box.
+The 'top: 40%' and 'transform: translateY(-100%)' moves the logo above the search box,
+ensuring it stays centered. Adjust the 'top' value if needed to fine-tune the position. */
+.main-page-logo {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  color: #9ACD32;
+  font-size: 100px;
+  top: 35%;
+  transform: translateY(-100%);
 }
 
 .search-box {
+  width: 35%; /* Adjust this value as needed */
+  padding: 10px;
   font-size: 20px;
-}
-
-.main-page-logo {
-  color: #9ACD32;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 100px;
 }
