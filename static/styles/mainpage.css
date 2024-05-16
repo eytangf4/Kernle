@@ -6,12 +6,10 @@ input {
 /* Uses flexbox to center the form content both horizontally and vertically within the viewport. */
 .center-screen {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 85vh;
   text-align: center;
-  position: relative;
+  min-height: 80vh;
 }
 
 
@@ -22,8 +20,7 @@ ensuring it stays centered. Adjust the 'top' value if needed to fine-tune the po
   position: absolute;
   color: #9ACD32;
   font-size: 100px;
-  top: 35%;
-  transform: translateY(-100%);
+  top: 22%;
 }
 
 .search-box {
