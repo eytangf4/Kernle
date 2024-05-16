@@ -1,4 +1,4 @@
-input {
+/* input {
   width: 500px;
   height: 50px;
 }
@@ -20,4 +20,27 @@ input {
   text-align: center;
   margin-bottom: 10px;
   font-size: 100px;
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  /* aka 500px */
+}
+
+.main-page-logo {
+  margin-bottom: 20px;
+  font-size: 100px;
+  color: #9ACD32;
+}
+
+.search-box {
+  width: 60vh; /* Adjust as needed */
+  /* aka 500px */
+  height: 6vh; /* Adjust as needed */
+  /* aka 50px */
+  font-size: 20px; /* Adjust as needed */
 }
