@@ -16,7 +16,9 @@ def pageToText (concept):
     # also contains data from a Wikipedia page but also uses property methods to filter data from the raw HTML.
     # this helps chatGPT to understand the page better
     # (I know this because I tried using both 'page' and 'WikipediaPage' and 'WikipediaPage' gave me clearer kernel summaries
-    return wikiPage.content
+    pageContent = wikiPage.content
+    shortenedContent = pageContent[:8000]
+    return shortenedContent
 
 def createPrompt (pageContent):
     prompt = ("summarize this wikipedia article delimited by quotes in extremely easy to read "
